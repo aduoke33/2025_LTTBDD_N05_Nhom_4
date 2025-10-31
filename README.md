@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # english_forum_app
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# 2025_LTTBDD_N05_Nhom_4
+English learning forum app for beginners
+>>>>>>> 6135ec5627bda74b724efa873ae3d9d6db9f6851
