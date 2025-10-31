@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const EnglishForumApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class EnglishForumApp extends StatelessWidget {
+  const EnglishForumApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const Scaffold(
         body: Center(
-          child: Text('English Forum App - Coming Soon'),
+          child: Text('English Forum App'),
         ),
       ),
     );
