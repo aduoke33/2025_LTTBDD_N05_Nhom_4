@@ -49,10 +49,7 @@ class PostCard extends StatelessWidget {
                       ),
                       Text(
                         post.timeAgo,
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 12),
                       ),
                     ],
                   ),
@@ -120,11 +117,7 @@ class _ActionButton extends StatelessWidget {
   final String label;
   final VoidCallback? onTap;
 
-  const _ActionButton({
-    required this.icon,
-    required this.label,
-    this.onTap,
-  });
+  const _ActionButton({required this.icon, required this.label, this.onTap});
 
   @override
   Widget build(BuildContext context) {

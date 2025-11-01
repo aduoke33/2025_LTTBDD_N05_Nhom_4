@@ -80,15 +80,16 @@ class _HomeScreenState extends State<HomeScreen> {
               if (_postController.text.trim().isNotEmpty) {
                 setState(() {
                   _posts.insert(
-                      0,
-                      Post(
-                        username: 'You',
-                        timeAgo: 'Just now',
-                        content: _postController.text.trim(),
-                        imageUrl: _imageUrlController.text.trim().isEmpty
-                            ? null
-                            : _imageUrlController.text.trim(),
-                      ));
+                    0,
+                    Post(
+                      username: 'You',
+                      timeAgo: 'Just now',
+                      content: _postController.text.trim(),
+                      imageUrl: _imageUrlController.text.trim().isEmpty
+                          ? null
+                          : _imageUrlController.text.trim(),
+                    ),
+                  );
                 });
                 _postController.clear();
                 _imageUrlController.clear();
@@ -105,10 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('English Forum'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('English Forum'), centerTitle: true),
       body: ListView.builder(
         itemCount: _posts.length,
         itemBuilder: (context, index) {
