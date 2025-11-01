@@ -1,6 +1,6 @@
-import 'package:english_forum_app/screens/home_screen.dart';
-import 'package:english_forum_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   runApp(const EnglishForumApp());
