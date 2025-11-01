@@ -1,17 +1,21 @@
 class Post {
+  final String username;
+  final String timeAgo;
   final String title;
   final String content;
-  final String author;
-  final DateTime timestamp;
-  final int likes;
+  final String? imageUrl;
+  int likes;
   final int comments;
+  final int shares;
 
   Post({
-    required this.title,
+    required this.username,
+    required this.timeAgo,
+    this.title = '',
     required this.content,
-    required this.author,
-    required this.timestamp,
+    this.imageUrl,
     this.likes = 0,
     this.comments = 0,
+    this.shares = 0,
   });
 }

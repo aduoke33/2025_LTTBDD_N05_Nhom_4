@@ -1,3 +1,4 @@
+import 'package:english_forum_app/models/post.dart';
 import 'package:flutter/material.dart';
 import '../widgets/post_card.dart';
 
@@ -9,27 +10,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> _posts = [
-    {
-      'username': 'Alice',
-      'timeAgo': '2h ago',
-      'title': 'Learning English',
-      'content': 'Learning English every day helps me improve quickly!',
-      'imageUrl': 'https://picsum.photos/400/200',
-      'likes': 12,
-      'comments': 3,
-      'shares': 1,
-    },
-    {
-      'username': 'Bob',
-      'timeAgo': '5h ago',
-      'title': 'IELTS Tips',
-      'content': 'Does anyone have tips for IELTS Writing?',
-      'imageUrl': null,
-      'likes': 8,
-      'comments': 5,
-      'shares': 2,
-    },
+  final List<Post> _posts = [
+    Post(
+      username: 'Alice',
+      timeAgo: '2h ago',
+      title: 'Learning English',
+      content: 'Learning English every day helps me improve quickly!',
+      imageUrl: 'https://picsum.photos/400/200',
+      likes: 12,
+      comments: 3,
+      shares: 1,
+    ),
+    Post(
+      username: 'Bob',
+      timeAgo: '5h ago',
+      title: 'IELTS Tips',
+      content: 'Does anyone have tips for IELTS Writing?',
+      imageUrl: null,
+      likes: 8,
+      comments: 5,
+      shares: 2,
+    ),
   ];
 
   final TextEditingController _postController = TextEditingController();
@@ -78,18 +79,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               if (_postController.text.trim().isNotEmpty) {
                 setState(() {
-                  _posts.insert(0, {
-                    'username': 'You',
-                    'timeAgo': 'Just now',
-                    'title': '',
-                    'content': _postController.text.trim(),
-                    'imageUrl': _imageUrlController.text.trim().isEmpty
-                        ? null
-                        : _imageUrlController.text.trim(),
-                    'likes': 0,
-                    'comments': 0,
-                    'shares': 0,
-                  });
+                  _posts.insert(
+                      0,
+                      Post(
+                        username: 'You',
+                        timeAgo: 'Just now',
+                        content: _postController.text.trim(),
+                        imageUrl: _imageUrlController.text.trim().isEmpty
+                            ? null
+                            : _imageUrlController.text.trim(),
+                      ));
                 });
                 _postController.clear();
                 _imageUrlController.clear();
@@ -115,17 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           final post = _posts[index];
           return PostCard(
-            username: post['username'],
-            timeAgo: post['timeAgo'],
-            title: post['title'] ?? '',
-            content: post['content'],
-            imageUrl: post['imageUrl'],
-            likes: post['likes'],
-            comments: post['comments'],
-            shares: post['shares'],
+            post: post,
             onLike: () {
               setState(() {
-                _posts[index]['likes']++;
+                post.likes++;
               });
             },
             onComment: () {

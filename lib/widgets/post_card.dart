@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
+import '../models/post.dart';
 import 'adaptive_image.dart';
 
 class PostCard extends StatelessWidget {
-  final String username;
-  final String timeAgo;
-  final String title;
-  final String content;
-  final String? imageUrl;
-  final int likes;
-  final int comments;
-  final int shares;
+  final Post post;
   final VoidCallback? onLike;
   final VoidCallback? onComment;
   final VoidCallback? onShare;
 
   const PostCard({
     super.key,
-    required this.username,
-    required this.timeAgo,
-    required this.title,
-    required this.content,
-    this.imageUrl,
-    this.likes = 0,
-    this.comments = 0,
-    this.shares = 0,
+    required this.post,
     this.onLike,
     this.onComment,
     this.onShare,
@@ -44,7 +31,7 @@ class PostCard extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.blue,
                   child: Text(
-                    username[0].toUpperCase(),
+                    post.username[0].toUpperCase(),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -54,14 +41,14 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        username,
+                        post.username,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
                       Text(
-                        timeAgo,
+                        post.timeAgo,
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 12,
@@ -75,9 +62,9 @@ class PostCard extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Title
-            if (title.isNotEmpty) ...[
+            if (post.title.isNotEmpty) ...[
               Text(
-                title,
+                post.title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -87,14 +74,14 @@ class PostCard extends StatelessWidget {
             ],
 
             // Content
-            Text(content),
+            Text(post.content),
 
             // Image
-            if (imageUrl != null && imageUrl!.isNotEmpty) ...[
+            if (post.imageUrl != null && post.imageUrl!.isNotEmpty) ...[
               const SizedBox(height: 12),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: AdaptiveImage(imageUrl),
+                child: AdaptiveImage(post.imageUrl),
               ),
             ],
 
@@ -106,17 +93,17 @@ class PostCard extends StatelessWidget {
               children: [
                 _ActionButton(
                   icon: Icons.favorite_border,
-                  label: likes.toString(),
+                  label: post.likes.toString(),
                   onTap: onLike,
                 ),
                 _ActionButton(
                   icon: Icons.comment_outlined,
-                  label: comments.toString(),
+                  label: post.comments.toString(),
                   onTap: onComment,
                 ),
                 _ActionButton(
                   icon: Icons.share_outlined,
-                  label: shares.toString(),
+                  label: post.shares.toString(),
                   onTap: onShare,
                 ),
               ],
