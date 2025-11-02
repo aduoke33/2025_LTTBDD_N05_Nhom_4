@@ -8,6 +8,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _agreeToTerms = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +78,73 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
 
-              // lam tiep o day nhe
+              const SizedBox(height: 16),
+
+              // Confirm Password Field
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Confirm Password',
+                  hintText: 'Re-enter your password',
+                  prefixIcon: const Icon(Icons.lock_outlined),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Terms and Conditions Checkbox
+              Row(
+                children: [
+                  Checkbox(
+                    value: _agreeToTerms,
+                    onChanged: (value) {
+                      setState(() {
+                        _agreeToTerms = value ?? false;
+                      });
+                    },
+                  ),
+                  const Expanded(
+                    child: Text(
+                      'I agree to the Terms and Conditions',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+
+              // Register Button
+              ElevatedButton(
+                onPressed: _agreeToTerms
+                    ? () {
+                  // TODO: Implement registration logic
+                }
+                    : null, // Button is disabled if terms are not agreed to
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text('Create Account'),
+              ),
+              const SizedBox(height: 16),
+
+              // Login Link
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have an account?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Login'),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
