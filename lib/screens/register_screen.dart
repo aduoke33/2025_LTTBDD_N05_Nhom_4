@@ -113,30 +113,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
 
               // Register Button
               ElevatedButton(
-                onPressed: _agreeToTerms
-                    ? () {
-                  // TODO: Implement registration logic
-                }
-                    : null, // Button is disabled if terms are not agreed to
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text('Create Account'),
+                child: const Text(
+                  'Create Account',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 16),
 
-              // Login Link
+              // Back to Login
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account?"),
+                  Text(
+                    'Already have an account? ',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
