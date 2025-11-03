@@ -1,5 +1,7 @@
 import 'package:english_forum_app/screens/login_screen.dart';
+import 'package:english_forum_app/screens/profile_screen.dart';
 import 'package:english_forum_app/screens/register_screen.dart';
+import 'package:english_forum_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
@@ -22,6 +24,8 @@ class EnglishForumApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
+        '/profile': (context) => const ProfileScreen(),
+        '/settings': (context) => const SettingsScreen(),
       },
     );
   }

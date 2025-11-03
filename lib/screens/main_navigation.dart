@@ -1,3 +1,4 @@
+import 'package:english_forum_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -14,7 +15,7 @@ class _MainNavigationState extends State<MainNavigation> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     Text('Search'), // Placeholder
-    Text('Profile'), // Placeholder
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
