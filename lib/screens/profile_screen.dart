@@ -10,7 +10,8 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProviderStateMixin {
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final User currentUser = User(
     id: '1',
@@ -48,9 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
             icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
               );
             },
           ),
@@ -77,9 +76,18 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          _buildStatColumn('Posts', userPosts.length.toString()),
-                          _buildStatColumn('Followers', currentUser.followersCount.toString()),
-                          _buildStatColumn('Following', currentUser.followingCount.toString()),
+                          _buildStatColumn(
+                            'Posts',
+                            userPosts.length.toString(),
+                          ),
+                          _buildStatColumn(
+                            'Followers',
+                            currentUser.followersCount.toString(),
+                          ),
+                          _buildStatColumn(
+                            'Following',
+                            currentUser.followingCount.toString(),
+                          ),
                         ],
                       ),
                     ),
@@ -119,7 +127,9 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                   child: OutlinedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Edit profile coming soon')),
+                        const SnackBar(
+                          content: Text('Edit profile coming soon'),
+                        ),
                       );
                     },
                     style: OutlinedButton.styleFrom(
@@ -189,13 +199,9 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                         },
                       ),
                 // Saved Tab
-                const Center(
-                  child: Text('Saved posts feature coming soon'),
-                ),
+                const Center(child: Text('Saved posts feature coming soon')),
                 // Tagged Tab
-                const Center(
-                  child: Text('Tagged posts feature coming soon'),
-                ),
+                const Center(child: Text('Tagged posts feature coming soon')),
               ],
             ),
           ),
@@ -209,18 +215,9 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
       children: [
         Text(
           count,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[600],
-          ),
-        ),
+        Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
       ],
     );
   }
