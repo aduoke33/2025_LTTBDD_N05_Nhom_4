@@ -9,12 +9,15 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true;
+  bool _darkModeEnabled = false;
   bool _privateAccount = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
       body: ListView(
         children: [
           // Account Section
@@ -72,6 +75,57 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SnackBar(content: Text('Email settings coming soon')),
               );
             },
+          ),
+          const Divider(),
+
+          // Appearance Section
+          _buildSectionHeader('Appearance'),
+          SwitchListTile(
+            secondary: const Icon(Icons.dark_mode_outlined),
+            title: const Text('Dark Mode'),
+            subtitle: const Text('Enable dark theme'),
+            value: _darkModeEnabled,
+            onChanged: (value) {
+              setState(() {
+                _darkModeEnabled = value;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Dark mode ${value ? "enabled" : "disabled"} (UI not implemented yet)',
+                  ),
+                ),
+              );
+            },
+          ),
+          _buildListTile(
+            icon: Icons.language_outlined,
+            title: 'Language',
+            subtitle: 'English',
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Language settings coming soon')),
+              );
+            },
+          ),
+          const Divider(),
+
+          // Privacy & Security Section
+          _buildSectionHeader('Privacy & Security'),
+          _buildListTile(
+            icon: Icons.security_outlined,
+            title: 'Privacy Policy',
+            onTap: () {},
+          ),
+          _buildListTile(
+            icon: Icons.description_outlined,
+            title: 'Terms of Service',
+            onTap: () {},
+          ),
+          _buildListTile(
+            icon: Icons.block_outlined,
+            title: 'Blocked Users',
+            onTap: () {},
           ),
           const Divider(),
         ],
