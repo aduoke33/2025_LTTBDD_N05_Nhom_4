@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'about_screen.dart';
+import 'login_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -15,9 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
+      appBar: AppBar(title: const Text('Settings')),
       body: ListView(
         children: [
           // Account Section
@@ -128,6 +128,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () {},
           ),
           const Divider(),
+
+          // About Section
+          _buildSectionHeader('About'),
+          _buildListTile(
+            icon: Icons.info_outline,
+            title: 'About App',
+            subtitle: 'Version 1.0.0',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AboutScreen()),
+              );
+            },
+          ),
+          _buildListTile(
+            icon: Icons.help_outline,
+            title: 'Help & Support',
+            onTap: () {},
+          ),
+          const Divider(),
+
+          // Logout
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.red),
+            title: const Text('Logout', style: TextStyle(color: Colors.red)),
+            onTap: () {
+              _showLogoutDialog();
+            },
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -159,6 +188,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
       subtitle: subtitle != null ? Text(subtitle) : null,
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
+    );
+  }
+
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Logout'),
+        content: const Text('Are you sure you want to logout?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close dialog
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) => false, // Remove all previous routes
+              );
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Logout'),
+          ),
+        ],
+      ),
     );
   }
 }
