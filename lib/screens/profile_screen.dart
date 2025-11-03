@@ -1,7 +1,7 @@
-import 'package:english_forum_app/models/post.dart';
+import 'package:english_forum_app/models/user.dart';
+import 'package:english_forum_app/repositories/example_post.dart';
+import 'package:english_forum_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
-import '../models/user.dart';
-import 'settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -144,6 +144,58 @@ class _ProfileScreenState extends State<ProfileScreen>
               Tab(icon: Icon(Icons.bookmark_border), text: 'Saved'),
               Tab(icon: Icon(Icons.person_outline), text: 'Tagged'),
             ],
+          ),
+          // Tab Views
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                // Posts Tab
+                userPosts.isEmpty
+                    ? const Center(child: Text('No posts yet'))
+                    : ListView.builder(
+                        itemCount: userPosts.length,
+                        itemBuilder: (context, index) {
+                          final post = userPosts[index];
+                          return Card(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            child: ListTile(
+                              leading: post.imageUrl != null
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(4),
+                                      child: Image.network(
+                                        post.imageUrl!,
+                                        width: 50,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : null,
+                              title: Text(
+                                post.content,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                '${post.likesCount} likes • ${post.commentsCount} comments',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                // Saved Tab
+                const Center(child: Text('Saved posts feature coming soon')),
+                // Tagged Tab
+                const Center(child: Text('Tagged posts feature coming soon')),
+              ],
+            ),
           ),
         ],
       ),

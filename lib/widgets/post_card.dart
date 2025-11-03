@@ -87,12 +87,12 @@ class PostCard extends StatelessWidget {
               children: [
                 _ActionButton(
                   icon: Icons.favorite_border,
-                  label: post.likes.toString(),
+                  label: post.likesCount.toString(),
                   onTap: onLike,
                 ),
                 _ActionButton(
                   icon: Icons.comment_outlined,
-                  label: post.comments.toString(),
+                  label: post.commentsCount.toString(),
                   onTap: onComment,
                 ),
                 _ActionButton(

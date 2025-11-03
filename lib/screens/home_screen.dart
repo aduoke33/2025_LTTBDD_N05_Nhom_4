@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
             post: post,
             onLike: () {
               setState(() {
-                post.likes++;
+                post.likesCount++;
               });
             },
             onComment: () {
