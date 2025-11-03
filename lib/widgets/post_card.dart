@@ -29,11 +29,8 @@ class PostCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Text(
-                    post.username[0].toUpperCase(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
+                  backgroundImage: NetworkImage(post.author.avatarUrl),
+                  radius: 20,
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -41,7 +38,7 @@ class PostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        post.username,
+                        post.author.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:english_forum_app/models/post.dart';
+import 'package:english_forum_app/models/user.dart';
 import 'package:flutter/material.dart';
 import '../widgets/post_card.dart';
 
@@ -10,28 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Post> _posts = [
-    Post(
-      username: 'Alice',
-      timeAgo: '2h ago',
-      title: 'Learning English',
-      content: 'Learning English every day helps me improve quickly!',
-      imageUrl: 'https://picsum.photos/400/200',
-      likes: 12,
-      comments: 3,
-      shares: 1,
-    ),
-    Post(
-      username: 'Bob',
-      timeAgo: '5h ago',
-      title: 'IELTS Tips',
-      content: 'Does anyone have tips for IELTS Writing?',
-      imageUrl: null,
-      likes: 8,
-      comments: 5,
-      shares: 2,
-    ),
-  ];
+  final List<Post> _posts = getExamplePosts();
 
   final TextEditingController _postController = TextEditingController();
   final TextEditingController _imageUrlController = TextEditingController();
@@ -82,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _posts.insert(
                     0,
                     Post(
-                      username: 'You',
+                      author: exampleUser,
                       timeAgo: 'Just now',
                       content: _postController.text.trim(),
                       imageUrl: _imageUrlController.text.trim().isEmpty

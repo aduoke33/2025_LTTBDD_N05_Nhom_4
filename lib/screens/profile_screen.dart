@@ -1,5 +1,7 @@
+import 'package:english_forum_app/models/post.dart';
 import 'package:flutter/material.dart';
 import '../models/user.dart';
+import 'settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -8,24 +10,41 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  final User currentUser = User(
-    id: '1',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    avatarUrl: 'https://i.pravatar.cc/150?img=12',
-    bio: 'Flutter developer | Tech enthusiast | Coffee lover ☕',
-    followersCount: 234,
-    followingCount: 123,
-  );
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final User currentUser = exampleUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final userPosts = getExamplePosts()
+        .where((post) => post.author.id == currentUser.id)
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
         actions: [
-          IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+            },
+          ),
         ],
       ),
       body: Column(
@@ -49,7 +68,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          _buildStatColumn('Posts', '0'),
+                          _buildStatColumn(
+                            'Posts',
+                            userPosts.length.toString(),
+                          ),
                           _buildStatColumn(
                             'Followers',
                             currentUser.followersCount.toString(),
@@ -90,10 +112,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 12),
+                // Edit Profile Button
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Edit profile coming soon'),
+                        ),
+                      );
+                    },
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text('Edit Profile'),
+                  ),
+                ),
               ],
             ),
           ),
           const Divider(height: 1),
+          // Tabs
+          TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(icon: Icon(Icons.grid_on), text: 'Posts'),
+              Tab(icon: Icon(Icons.bookmark_border), text: 'Saved'),
+              Tab(icon: Icon(Icons.person_outline), text: 'Tagged'),
+            ],
+          ),
         ],
       ),
     );

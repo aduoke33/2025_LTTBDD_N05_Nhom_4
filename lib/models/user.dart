@@ -17,3 +17,14 @@ class User {
     this.followingCount = 0,
   });
 }
+
+// Example User for mock data
+final exampleUser = User(
+  id: '1',
+  name: 'John Doe',
+  email: 'john.doe@example.com',
+  avatarUrl: 'https://i.pravatar.cc/150?img=12',
+  bio: 'Flutter developer | Tech enthusiast | Coffee lover ☕',
+  followersCount: 234,
+  followingCount: 123,
+);
