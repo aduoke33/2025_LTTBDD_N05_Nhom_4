@@ -1,7 +1,7 @@
-import 'package:english_forum_app/models/user.dart';
-import 'package:english_forum_app/repositories/example_post.dart';
-import 'package:english_forum_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import '../models/user.dart';
+import '../repositories/example_post.dart';
+import 'settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,10 +10,17 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final User currentUser = exampleUser;
+  final User currentUser = User(
+    id: '1',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    avatarUrl: 'https://i.pravatar.cc/150?img=12',
+    bio: 'Flutter developer | Tech enthusiast | Coffee lover ☕',
+    followersCount: 234,
+    followingCount: 123,
+  );
 
   @override
   void initState() {
@@ -41,7 +48,9 @@ class _ProfileScreenState extends State<ProfileScreen>
             icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
               );
             },
           ),
@@ -68,18 +77,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          _buildStatColumn(
-                            'Posts',
-                            userPosts.length.toString(),
-                          ),
-                          _buildStatColumn(
-                            'Followers',
-                            currentUser.followersCount.toString(),
-                          ),
-                          _buildStatColumn(
-                            'Following',
-                            currentUser.followingCount.toString(),
-                          ),
+                          _buildStatColumn('Posts', userPosts.length.toString()),
+                          _buildStatColumn('Followers', currentUser.followersCount.toString()),
+                          _buildStatColumn('Following', currentUser.followingCount.toString()),
                         ],
                       ),
                     ),
@@ -119,9 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: OutlinedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Edit profile coming soon'),
-                        ),
+                        const SnackBar(content: Text('Edit profile coming soon')),
                       );
                     },
                     style: OutlinedButton.styleFrom(
@@ -191,9 +189,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                         },
                       ),
                 // Saved Tab
-                const Center(child: Text('Saved posts feature coming soon')),
+                const Center(
+                  child: Text('Saved posts feature coming soon'),
+                ),
                 // Tagged Tab
-                const Center(child: Text('Tagged posts feature coming soon')),
+                const Center(
+                  child: Text('Tagged posts feature coming soon'),
+                ),
               ],
             ),
           ),
@@ -207,9 +209,18 @@ class _ProfileScreenState extends State<ProfileScreen>
       children: [
         Text(
           count,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.grey[600],
+          ),
+        ),
       ],
     );
   }
