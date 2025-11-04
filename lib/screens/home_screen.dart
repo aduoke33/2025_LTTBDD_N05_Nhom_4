@@ -1,6 +1,7 @@
-import 'package:english_forum_app/models/post.dart';
-import 'package:english_forum_app/models/user.dart';
+import 'package:english_forum_app/repositories/example_post.dart';
 import 'package:flutter/material.dart';
+import '../models/post.dart';
+import '../models/user.dart';
 import '../widgets/post_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,10 +12,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Post> _posts = getExamplePosts();
+  late List<Post> _posts;
 
   final TextEditingController _postController = TextEditingController();
   final TextEditingController _imageUrlController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _posts = getExamplePosts();
+  }
 
   @override
   void dispose() {
@@ -91,20 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: _posts.length,
         itemBuilder: (context, index) {
           final post = _posts[index];
-          return PostCard(
-            post: post,
-            onLike: () {
-              setState(() {
-                post.likesCount++;
-              });
-            },
-            onComment: () {
-              // TODO: Navigate to comments screen
-            },
-            onShare: () {
-              // TODO: Share functionality
-            },
-          );
+          return PostCard(post: post);
         },
       ),
       floatingActionButton: FloatingActionButton(

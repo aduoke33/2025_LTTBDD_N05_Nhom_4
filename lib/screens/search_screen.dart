@@ -35,8 +35,12 @@ class _SearchScreenState extends State<SearchScreen> {
         _searchResults = getExamplePosts();
       } else {
         _searchResults = getExamplePosts().where((post) {
-          final contentMatch = post.content.toLowerCase().contains(query.toLowerCase());
-          final authorMatch = post.author.name.toLowerCase().contains(query.toLowerCase());
+          final contentMatch = post.content.toLowerCase().contains(
+            query.toLowerCase(),
+          );
+          final authorMatch = post.author.name.toLowerCase().contains(
+            query.toLowerCase(),
+          );
           return contentMatch || authorMatch;
         }).toList();
       }
