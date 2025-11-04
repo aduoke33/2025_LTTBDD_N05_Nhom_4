@@ -21,7 +21,3 @@ class Post {
     this.shares = 0,
   });
 }
-
-List<Post> getExamplePosts() {
-  return [];
-}

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/post.dart';
+import '../repositories/example_post.dart';
+import '../widgets/post_card.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -9,8 +12,16 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
+  List<Post> _searchResults = [];
   String _selectedFilter = 'All';
+
   final List<String> _filters = ['All', 'Posts', 'Users', 'Recent'];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchResults = getExamplePosts(); // Show all posts initially
+  }
 
   @override
   void dispose() {
@@ -19,8 +30,17 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void _performSearch(String query) {
-    // Placeholder for search logic
-    setState(() {});
+    setState(() {
+      if (query.isEmpty) {
+        _searchResults = getExamplePosts();
+      } else {
+        _searchResults = getExamplePosts().where((post) {
+          final contentMatch = post.content.toLowerCase().contains(query.toLowerCase());
+          final authorMatch = post.author.name.toLowerCase().contains(query.toLowerCase());
+          return contentMatch || authorMatch;
+        }).toList();
+      }
+    });
   }
 
   @override
@@ -81,10 +101,13 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           const Divider(height: 1),
-          // Search results will be added here
+          // Search Results
           Expanded(
-            child: Center(
-              child: Text('Start searching...'),
+            child: ListView.builder(
+              itemCount: _searchResults.length,
+              itemBuilder: (context, index) {
+                return PostCard(post: _searchResults[index]);
+              },
             ),
           ),
         ],
