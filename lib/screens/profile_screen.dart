@@ -15,10 +15,10 @@ class _ProfileScreenState extends State<ProfileScreen>
   late TabController _tabController;
   final User currentUser = User(
     id: '1',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
+    name: 'Ngo Nhat dz',
+    email: 'aduoke33@example.com',
     avatarUrl: 'https://i.pravatar.cc/150?img=12',
-    bio: 'Flutter developer | Tech enthusiast | Coffee lover ☕',
+    bio: 'Flutter developer | Tech enthusiast | Cat lover ☕',
     followersCount: 234,
     followingCount: 123,
   );

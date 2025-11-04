@@ -37,8 +37,12 @@ class _SearchScreenState extends State<SearchScreen> {
         _searchResults = []; // Clear results when query is empty
       } else {
         _searchResults = getExamplePosts().where((post) {
-          final contentMatch = post.content.toLowerCase().contains(query.toLowerCase());
-          final authorMatch = post.author.name.toLowerCase().contains(query.toLowerCase());
+          final contentMatch = post.content.toLowerCase().contains(
+            query.toLowerCase(),
+          );
+          final authorMatch = post.author.name.toLowerCase().contains(
+            query.toLowerCase(),
+          );
           return contentMatch || authorMatch;
         }).toList();
       }
@@ -104,9 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           const Divider(height: 1),
           // Search Results
-          Expanded(
-            child: _buildSearchResults(),
-          ),
+          Expanded(child: _buildSearchResults()),
         ],
       ),
     );
@@ -118,27 +120,17 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.search_off,
-              size: 64,
-              color: Colors.grey[400],
-            ),
+            Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
               _isSearching ? 'No results found' : 'Start searching',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
             ),
             if (_isSearching) ...[
               const SizedBox(height: 8),
               Text(
                 'Try different keywords',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[500],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[500]),
               ),
             ],
           ],
