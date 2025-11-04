@@ -6,11 +6,7 @@ class Task {
   String title;
   bool isCompleted;
 
-  Task({
-    required this.id,
-    required this.title,
-    this.isCompleted = false,
-  });
+  Task({required this.id, required this.title, this.isCompleted = false});
 }
 
 class DailyTasksScreen extends StatefulWidget {
@@ -30,16 +26,12 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daily Tasks'),
-      ),
+      appBar: AppBar(title: const Text('Daily Tasks')),
       body: ListView.builder(
         itemCount: _tasks.length,
         itemBuilder: (context, index) {
           final task = _tasks[index];
-          return ListTile(
-            title: Text(task.title),
-          );
+          return ListTile(title: Text(task.title));
         },
       ),
     );

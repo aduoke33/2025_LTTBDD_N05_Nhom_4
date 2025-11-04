@@ -13,15 +13,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final User currentUser = User(
-    id: '1',
-    name: 'Ngo Nhat dz',
-    email: 'aduoke33@example.com',
-    avatarUrl: 'https://i.pravatar.cc/150?img=12',
-    bio: 'Flutter developer | Tech enthusiast | Cat lover ☕',
-    followersCount: 234,
-    followingCount: 123,
-  );
+  final User currentUser = exampleUser;
 
   @override
   void initState() {
@@ -68,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     // Avatar
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: NetworkImage(currentUser.avatarUrl),
+                      backgroundImage: AssetImage(currentUser.avatarUrl),
                     ),
                     const SizedBox(width: 24),
                     // Stats

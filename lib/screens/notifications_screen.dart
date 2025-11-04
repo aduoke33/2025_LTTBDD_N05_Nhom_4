@@ -39,7 +39,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 final notification = _notifications[index];
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
+                    backgroundImage: AssetImage(
                       notification.fromUser.avatarUrl,
                     ),
                   ),

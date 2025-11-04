@@ -16,9 +16,9 @@ List<Post> getExamplePosts() {
     Post(
       author: User(
         id: '2',
-        name: 'Jane Smith',
+        name: 'Hieu Nguyen Dz',
         email: 'jane.smith@example.com',
-        avatarUrl: 'https://i.pravatar.cc/150?img=5',
+        avatarUrl: 'assets/images/2025_05_07_11_07_IMG_9225.PNG',
       ),
       timeAgo: '1h',
       title: 'How to manage state in a large application?',
@@ -31,7 +31,12 @@ List<Post> getExamplePosts() {
       shares: 7,
     ),
     Post(
-      author: exampleUser,
+      author: User(
+        id: '3',
+        name: 'Ngo Nhat dz',
+        email: 'ngonhatdz123@example.com',
+        avatarUrl: 'assets/images/2025_01_14_10_42_IMG_8124.PNG',
+      ),
       timeAgo: '3d',
       title: 'My thoughts on the new Dart 3 features',
       content: 'Patterns and records are a game-changer for productivity!',

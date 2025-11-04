@@ -21,9 +21,9 @@ class User {
 // Example User for mock data
 final exampleUser = User(
   id: '1',
-  name: 'John Doe',
-  email: 'john.doe@example.com',
-  avatarUrl: 'https://i.pravatar.cc/150?img=12',
+  name: 'Ngo Nhat Dz',
+  email: '23010329@st.phenikaa-uni.edu.vn',
+  avatarUrl: 'assets/images/2025_01_14_10_42_IMG_8124.PNG',
   bio: 'Flutter developer | Tech enthusiast | Coffee lover ☕',
   followersCount: 234,
   followingCount: 123,
