@@ -1,4 +1,6 @@
+import 'package:english_forum_app/screens/notifications_screen.dart';
 import 'package:english_forum_app/screens/profile_screen.dart';
+import 'package:english_forum_app/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -14,7 +16,8 @@ class _MainNavigationState extends State<MainNavigation> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    Text('Search'), // Placeholder
+    SearchScreen(),
+    NotificationsScreen(),
     ProfileScreen(),
   ];
 
@@ -32,10 +35,15 @@ class _MainNavigationState extends State<MainNavigation> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed, // To show all labels
       ),
     );
   }
