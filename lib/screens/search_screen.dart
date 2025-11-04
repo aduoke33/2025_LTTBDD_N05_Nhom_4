@@ -13,6 +13,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Post> _searchResults = [];
+  bool _isSearching = false;
   String _selectedFilter = 'All';
 
   final List<String> _filters = ['All', 'Posts', 'Users', 'Recent'];
@@ -20,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    _searchResults = getExamplePosts(); // Show all posts initially
+    // Start with an empty list, not all posts.
   }
 
   @override
@@ -31,16 +32,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _performSearch(String query) {
     setState(() {
+      _isSearching = query.isNotEmpty;
       if (query.isEmpty) {
-        _searchResults = getExamplePosts();
+        _searchResults = []; // Clear results when query is empty
       } else {
         _searchResults = getExamplePosts().where((post) {
-          final contentMatch = post.content.toLowerCase().contains(
-            query.toLowerCase(),
-          );
-          final authorMatch = post.author.name.toLowerCase().contains(
-            query.toLowerCase(),
-          );
+          final contentMatch = post.content.toLowerCase().contains(query.toLowerCase());
+          final authorMatch = post.author.name.toLowerCase().contains(query.toLowerCase());
           return contentMatch || authorMatch;
         }).toList();
       }
@@ -107,15 +105,52 @@ class _SearchScreenState extends State<SearchScreen> {
           const Divider(height: 1),
           // Search Results
           Expanded(
-            child: ListView.builder(
-              itemCount: _searchResults.length,
-              itemBuilder: (context, index) {
-                return PostCard(post: _searchResults[index]);
-              },
-            ),
+            child: _buildSearchResults(),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSearchResults() {
+    if (_searchResults.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_off,
+              size: 64,
+              color: Colors.grey[400],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              _isSearching ? 'No results found' : 'Start searching',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[600],
+              ),
+            ),
+            if (_isSearching) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Try different keywords',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey[500],
+                ),
+              ),
+            ],
+          ],
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: _searchResults.length,
+      itemBuilder: (context, index) {
+        return PostCard(post: _searchResults[index]);
+      },
     );
   }
 }
