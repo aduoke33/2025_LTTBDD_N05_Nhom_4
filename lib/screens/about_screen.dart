@@ -6,25 +6,14 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About App')),
+      appBar: AppBar(title: const Text('About')),
       body: const Center(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'English Forum App',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text('Version 1.0.0'),
-              SizedBox(height: 16),
-              Text(
-                'This is a forum application for English learners, developed as part of a mobile programming project.',
-                textAlign: TextAlign.center,
-              ),
-            ],
+          child: Text(
+            'This is an application for English communication and learning.\n\n',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16),
           ),
         ),
       ),

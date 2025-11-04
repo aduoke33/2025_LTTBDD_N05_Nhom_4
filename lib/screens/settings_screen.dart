@@ -133,8 +133,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildSectionHeader('About'),
           _buildListTile(
             icon: Icons.info_outline,
-            title: 'About App',
-            subtitle: 'Version 1.0.0',
+            title: 'About',
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const AboutScreen()),
