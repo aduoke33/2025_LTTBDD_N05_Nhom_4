@@ -3,17 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:english_forum_app/screens/daily_tasks_screen.dart';
 
 void main() {
-  testWidgets('DailyTasksScreen displays title and initial tasks', (
-    WidgetTester tester,
-  ) async {
-    // Build the widget
+  testWidgets('DailyTasksScreen shows initial tasks', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
     await tester.pumpWidget(const MaterialApp(home: DailyTasksScreen()));
 
-    // Verify the app bar title is displayed
+    // Verify that the title is correct.
     expect(find.text('Daily Tasks'), findsOneWidget);
 
-    // Verify the initial tasks are displayed
-    expect(find.text('Complete Math Assignment'), findsOneWidget);
-    expect(find.text('Read Chapter 3 of History book'), findsOneWidget);
+    // Verify that the initial tasks are displayed.
+    expect(find.text('Learn 10 new vocabulary words'), findsOneWidget);
+    expect(find.text('Practice speaking for 15 minutes'), findsOneWidget);
+    expect(find.text('Read one news article in English'), findsOneWidget);
   });
 }
