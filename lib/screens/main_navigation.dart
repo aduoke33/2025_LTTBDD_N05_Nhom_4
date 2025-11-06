@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:english_forum_app/screens/daily_tasks_screen.dart';
 import 'package:english_forum_app/screens/home_screen.dart';
 import 'package:english_forum_app/screens/notifications_screen.dart';
@@ -31,38 +32,38 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home),
+            label: l10n.get('home') ?? 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: const Icon(Icons.search),
+            label: l10n.get('search') ?? 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.task_alt), // Icon cho Daily Tasks
-            label: 'Tasks',
+            icon: const Icon(Icons.task_alt), // Icon cho Daily Tasks
+            label: l10n.get('tasks') ?? 'Tasks',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
+            icon: const Icon(Icons.notifications),
+            label: l10n.get('notifications') ?? 'Notifications',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: const Icon(Icons.person),
+            label: l10n.get('profile') ?? 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed, // Quan trọng để hiển thị tất cả label
+        type: BottomNavigationBarType
+            .fixed, // Quan trọng để hiển thị tất cả label
       ),
     );
   }
