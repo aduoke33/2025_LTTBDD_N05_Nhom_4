@@ -28,18 +28,20 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           locale: languageProvider.currentLocale,
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('vi', ''),
-          ],
+          supportedLocales: const [Locale('en', ''), Locale('vi', '')],
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          // Start the app with the Login Screen
-          home: const LoginScreen(),
+          // Use a Builder to ensure the context is correct
+          home: Builder(
+            builder: (context) {
+              // This context now has the correct localizations
+              return const LoginScreen();
+            },
+          ),
         );
       },
     );
