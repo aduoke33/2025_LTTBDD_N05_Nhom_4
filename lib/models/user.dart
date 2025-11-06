@@ -18,7 +18,7 @@ class User {
   });
 }
 
-// Example User for mock data
+
 final exampleUser = User(
   id: '1',
   name: 'Ngo Nhat Dz',

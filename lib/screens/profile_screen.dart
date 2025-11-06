@@ -49,21 +49,21 @@ class _ProfileScreenState extends State<ProfileScreen>
       ),
       body: Column(
         children: [
-          // Profile Header
+
           Container(
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                // Avatar and Stats
+
                 Row(
                   children: [
-                    // Avatar
+
                     CircleAvatar(
                       radius: 40,
                       backgroundImage: AssetImage(currentUser.avatarUrl),
                     ),
                     const SizedBox(width: 24),
-                    // Stats
+
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ],
                 ),
                 const SizedBox(height: 12),
-                // Name and Bio
+
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Column(
@@ -113,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                 ),
                 const SizedBox(height: 12),
-                // Edit Profile Button
+
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
@@ -136,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ),
           const Divider(height: 1),
-          // Tabs
+
           TabBar(
             controller: _tabController,
             tabs: const [
@@ -145,12 +145,12 @@ class _ProfileScreenState extends State<ProfileScreen>
               Tab(icon: Icon(Icons.person_outline), text: 'Tagged'),
             ],
           ),
-          // Tab Views
+
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: [
-                // Posts Tab
+
                 userPosts.isEmpty
                     ? const Center(child: Text('No posts yet'))
                     : ListView.builder(
@@ -190,9 +190,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                           );
                         },
                       ),
-                // Saved Tab
+
                 const Center(child: Text('Saved posts feature coming soon')),
-                // Tagged Tab
+
                 const Center(child: Text('Tagged posts feature coming soon')),
               ],
             ),

@@ -24,6 +24,12 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
     }
   }
 
+  void _deleteTask(int index) {
+    setState(() {
+      _tasks.removeAt(index);
+    });
+  }
+
   @override
   void dispose() {
     _taskController.dispose();
@@ -33,9 +39,7 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daily Tasks'),
-      ),
+      appBar: AppBar(title: const Text('Daily Tasks')),
       body: Column(
         children: [
           Expanded(
@@ -45,6 +49,10 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
                 return ListTile(
                   title: Text(_tasks[index]),
                   leading: const Icon(Icons.check_box_outline_blank),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    onPressed: () => _deleteTask(index),
+                  ),
                 );
               },
             ),
@@ -64,10 +72,7 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: _addTask,
-                ),
+                IconButton(icon: const Icon(Icons.add), onPressed: _addTask),
               ],
             ),
           ),
