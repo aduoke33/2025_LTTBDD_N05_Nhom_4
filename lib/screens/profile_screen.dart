@@ -49,15 +49,12 @@ class _ProfileScreenState extends State<ProfileScreen>
       ),
       body: Column(
         children: [
-
           Container(
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-
                 Row(
                   children: [
-
                     CircleAvatar(
                       radius: 40,
                       backgroundImage: AssetImage(currentUser.avatarUrl),
@@ -150,7 +147,6 @@ class _ProfileScreenState extends State<ProfileScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-
                 userPosts.isEmpty
                     ? const Center(child: Text('No posts yet'))
                     : ListView.builder(

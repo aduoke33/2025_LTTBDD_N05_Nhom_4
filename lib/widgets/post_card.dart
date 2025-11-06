@@ -25,7 +25,6 @@ class PostCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               children: [
                 CircleAvatar(
@@ -55,7 +54,6 @@ class PostCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-
             if (post.title.isNotEmpty) ...[
               Text(
                 post.title,
@@ -67,9 +65,7 @@ class PostCard extends StatelessWidget {
               const SizedBox(height: 8),
             ],
 
-
             Text(post.content),
-
 
             if (post.imageUrl != null && post.imageUrl!.isNotEmpty) ...[
               const SizedBox(height: 12),
@@ -80,7 +76,6 @@ class PostCard extends StatelessWidget {
             ],
 
             const SizedBox(height: 12),
-
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

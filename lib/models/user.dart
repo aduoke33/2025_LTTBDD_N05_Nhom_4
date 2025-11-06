@@ -18,7 +18,6 @@ class User {
   });
 }
 
-
 final exampleUser = User(
   id: '1',
   name: 'Ngo Nhat Dz',

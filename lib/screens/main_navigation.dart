@@ -1,8 +1,9 @@
+import 'package:english_forum_app/screens/daily_tasks_screen.dart';
+import 'package:english_forum_app/screens/home_screen.dart';
 import 'package:english_forum_app/screens/notifications_screen.dart';
 import 'package:english_forum_app/screens/profile_screen.dart';
 import 'package:english_forum_app/screens/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -17,6 +18,7 @@ class _MainNavigationState extends State<MainNavigation> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     SearchScreen(),
+    DailyTasksScreen(), // Thêm màn hình mới
     NotificationsScreen(),
     ProfileScreen(),
   ];
@@ -30,20 +32,37 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task_alt), // Icon cho Daily Tasks
+            label: 'Tasks',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed, // To show all labels
+        type: BottomNavigationBarType.fixed, // Quan trọng để hiển thị tất cả label
       ),
     );
   }
