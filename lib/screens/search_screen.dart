@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import '../models/post.dart';
 import '../repositories/example_post.dart';
@@ -51,12 +52,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: TextField(
           controller: _searchController,
           decoration: InputDecoration(
-            hintText: 'Search posts, users...',
+            hintText: l10n.get('searchPostsUsers') ?? 'Search posts, users...',
             border: InputBorder.none,
             prefixIcon: const Icon(Icons.search),
             suffixIcon: _searchController.text.isNotEmpty
@@ -88,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: FilterChip(
-                    label: Text(filter),
+                    label: Text(l10n.get(filter.toLowerCase()) ?? filter),
                     selected: isSelected,
                     onSelected: (selected) {
                       setState(() {
@@ -108,41 +110,34 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           const Divider(height: 1),
           // Search Results
-          Expanded(child: _buildSearchResults()),
+          Expanded(
+            child: _isSearching
+                ? _searchResults.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: _searchResults.length,
+                          itemBuilder: (context, index) {
+                            return PostCard(post: _searchResults[index]);
+                          },
+                        )
+                      : Center(
+                          child: Text(
+                            l10n.get('noResultsFound') ?? 'No results found',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )
+                : Center(
+                    child: Text(
+                      l10n.get('searchForSomething') ??
+                          'Search for something to get started',
+                      style: const TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSearchResults() {
-    if (_searchResults.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
-            const SizedBox(height: 16),
-            Text(
-              _isSearching ? 'No results found' : 'Start searching',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            if (_isSearching) ...[
-              const SizedBox(height: 8),
-              Text(
-                'Try different keywords',
-                style: TextStyle(fontSize: 14, color: Colors.grey[500]),
-              ),
-            ],
-          ],
-        ),
-      );
-    }
-
-    return ListView.builder(
-      itemCount: _searchResults.length,
-      itemBuilder: (context, index) {
-        return PostCard(post: _searchResults[index]);
-      },
     );
   }
 }

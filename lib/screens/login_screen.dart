@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:english_forum_app/screens/main_navigation.dart';
 import 'package:english_forum_app/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -48,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Icon(Icons.school, size: 80, color: Colors.blue),
                   const SizedBox(height: 16),
                   Text(
-                    'Welcome Back',
+                    l10n.get('welcomeBack') ?? 'Welcome Back',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sign in to continue',
+                    l10n.get('signInToContinue') ?? 'Sign in to continue',
                     style: Theme.of(
                       context,
                     ).textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
@@ -69,8 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
+                      labelText: l10n.get('email') ?? 'Email',
+                      hintText:
+                          l10n.get('enterYourEmail') ?? 'Enter your email',
                       prefixIcon: const Icon(Icons.email_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -78,10 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return l10n.get('pleaseEnterYourEmail') ??
+                            'Please enter your email';
                       }
                       if (!value.contains('@')) {
-                        return 'Please enter a valid email';
+                        return l10n.get('pleaseEnterAValidEmail') ??
+                            'Please enter a valid email';
                       }
                       return null;
                     },
@@ -93,8 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
+                      labelText: l10n.get('password') ?? 'Password',
+                      hintText:
+                          l10n.get('enterYourPassword') ??
+                          'Enter your password',
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -114,15 +121,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
+                        return l10n.get('pleaseEnterYourPassword') ??
+                            'Please enter your password';
                       }
                       return null;
                     },
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 24),
 
                   // Forgot Password
                   Align(
@@ -131,11 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Password reset feature coming soon'),
+                            content: Text('Forgot password coming soon'),
                           ),
                         );
                       },
-                      child: const Text('Forgot Password?'),
+                      child: Text(
+                        l10n.get('forgotPassword') ?? 'Forgot Password?',
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -149,23 +156,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Text(
+                      l10n.get('login') ?? 'Login',
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
 
                   // Register Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account? ",
-                        style: TextStyle(color: Colors.grey[600]),
+                        l10n.get('dontHaveAnAccount') ??
+                            "Don't have an account?",
                       ),
                       TextButton(
                         onPressed: () {
@@ -175,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                        child: const Text('Register'),
+                        child: Text(l10n.get('register') ?? 'Register'),
                       ),
                     ],
                   ),

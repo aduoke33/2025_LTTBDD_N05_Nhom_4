@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'main_navigation.dart';
 
@@ -28,11 +29,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _handleRegister() {
+    final l10n = AppLocalizations.of(context)!;
     if (_formKey.currentState!.validate()) {
       if (!_agreeToTerms) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please agree to terms and conditions'),
+          SnackBar(
+            content: Text(
+              l10n.get('pleaseAgreeToTerms') ??
+                  'Please agree to terms and conditions',
+            ),
             backgroundColor: Colors.orange,
           ),
         );
@@ -48,9 +53,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: Text(l10n.get('createAccount') ?? 'Create Account'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -62,18 +68,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: [
                 const SizedBox(height: 24),
                 Text(
-                  'Join Us Today',
+                  l10n.get('joinUsToday') ?? 'Join Us Today',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Create an account to get started',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                  l10n.get('createAccountToGetStarted') ??
+                      'Create an account to get started',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
@@ -83,8 +90,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _nameController,
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
-                    labelText: 'Full Name',
-                    hintText: 'Enter your full name',
+                    labelText: l10n.get('fullName') ?? 'Full Name',
+                    hintText:
+                        l10n.get('enterYourFullName') ?? 'Enter your full name',
                     prefixIcon: const Icon(Icons.person_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -92,10 +100,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
+                      return l10n.get('pleaseEnterYourName') ??
+                          'Please enter your name';
                     }
                     if (value.length < 3) {
-                      return 'Name must be at least 3 characters';
+                      return l10n.get('nameMustBeAtLeast3Chars') ??
+                          'Name must be at least 3 characters';
                     }
                     return null;
                   },
@@ -107,8 +117,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter your email',
+                    labelText: l10n.get('email') ?? 'Email',
+                    hintText: l10n.get('enterYourEmail') ?? 'Enter your email',
                     prefixIcon: const Icon(Icons.email_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -116,10 +126,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
+                      return l10n.get('pleaseEnterYourEmail') ??
+                          'Please enter your email';
                     }
-                    if (!value.contains('@') || !value.contains('.')) {
-                      return 'Please enter a valid email';
+                    if (!value.contains('@')) {
+                      return l10n.get('pleaseEnterAValidEmail') ??
+                          'Please enter a valid email';
                     }
                     return null;
                   },
@@ -131,9 +143,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
-                    labelText: 'Password',
-                    hintText: 'Create a password',
-                    prefixIcon: const Icon(Icons.lock_outlined),
+                    labelText: l10n.get('password') ?? 'Password',
+                    hintText:
+                        l10n.get('enterYourPassword') ?? 'Enter your password',
+                    prefixIcon: const Icon(Icons.lock_outline),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
@@ -152,10 +165,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
+                      return l10n.get('pleaseEnterYourPassword') ??
+                          'Please enter your password';
                     }
                     if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
+                      return l10n.get('passwordMustBeAtLeast6Chars') ??
+                          'Password must be at least 6 characters';
                     }
                     return null;
                   },
@@ -167,9 +182,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
-                    labelText: 'Confirm Password',
-                    hintText: 'Re-enter your password',
-                    prefixIcon: const Icon(Icons.lock_outlined),
+                    labelText:
+                        l10n.get('confirmPassword') ?? 'Confirm Password',
+                    hintText:
+                        l10n.get('reEnterYourPassword') ??
+                        'Re-enter your password',
+                    prefixIcon: const Icon(Icons.lock_outline),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirmPassword
@@ -188,41 +206,82 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please confirm your password';
+                      return l10n.get('pleaseConfirmYourPassword') ??
+                          'Please confirm your password';
                     }
                     if (value != _passwordController.text) {
-                      return 'Passwords do not match';
+                      return l10n.get('passwordsDoNotMatch') ??
+                          'Passwords do not match';
                     }
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
 
-                // Terms and Conditions Checkbox
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _agreeToTerms,
-                      onChanged: (value) {
-                        setState(() {
-                          _agreeToTerms = value ?? false;
-                        });
-                      },
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _agreeToTerms = !_agreeToTerms;
-                          });
-                        },
-                        child: Text(
-                          'I agree to the Terms and Conditions',
-                          style: TextStyle(color: Colors.grey[700]),
+                // Terms and Conditions
+                FormField<bool>(
+                  builder: (state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Checkbox(
+                              value: _agreeToTerms,
+                              onChanged: (value) {
+                                setState(() {
+                                  _agreeToTerms = value!;
+                                  state.didChange(value);
+                                });
+                              },
+                            ),
+                            Expanded(
+                              child: Text.rich(
+                                TextSpan(
+                                  text:
+                                      l10n.get('iAgreeToThe') ??
+                                      'I agree to the ',
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          l10n.get('termsAndConditions') ??
+                                          'Terms and Conditions',
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                      // Add recognizer for tap event
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  ],
+                        if (state.hasError)
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 12.0,
+                              top: 4.0,
+                            ),
+                            child: Text(
+                              state.errorText!,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.error,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                  validator: (value) {
+                    if (!_agreeToTerms) {
+                      return l10n.get('youMustAgreeToTheTerms') ??
+                          'You must agree to the terms';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 24),
 
@@ -235,28 +294,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    'Create Account',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  child: Text(
+                    l10n.get('register') ?? 'Register',
+                    style: const TextStyle(fontSize: 16),
                   ),
-                ),
-                const SizedBox(height: 16),
-
-                // Back to Login
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already have an account? ',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Login'),
-                    ),
-                  ],
                 ),
               ],
             ),

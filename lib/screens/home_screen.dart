@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:english_forum_app/repositories/example_post.dart';
 import 'package:flutter/material.dart';
 import '../models/post.dart';
@@ -31,28 +32,31 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showCreatePostDialog() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Create Post'),
+        title: Text(l10n.get('createPost') ?? 'Create Post'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               controller: _postController,
-              decoration: const InputDecoration(
-                hintText: 'What\'s on your mind?',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText:
+                    l10n.get('whatsOnYourMind') ?? 'What\'s on your mind?',
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _imageUrlController,
-              decoration: const InputDecoration(
-                hintText: 'Paste image URL (optional)',
-                labelText: 'Image URL',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText:
+                    l10n.get('pasteImageUrl') ?? 'Paste image URL (optional)',
+                labelText: l10n.get('imageUrl') ?? 'Image URL',
+                border: const OutlineInputBorder(),
               ),
             ),
           ],
@@ -60,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.get('cancel') ?? 'Cancel'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -83,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pop(context);
               }
             },
-            child: const Text('Post'),
+            child: Text(l10n.get('post') ?? 'Post'),
           ),
         ],
       ),
@@ -92,8 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('English Forum'), centerTitle: true),
+      appBar: AppBar(
+        title: Text(l10n.get('englishForum') ?? 'English Forum'),
+        centerTitle: true,
+      ),
       body: ListView.builder(
         itemCount: _posts.length,
         itemBuilder: (context, index) {

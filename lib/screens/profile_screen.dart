@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import '../models/user.dart';
 import '../repositories/example_post.dart';
@@ -29,13 +30,14 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final userPosts = getExamplePosts()
         .where((post) => post.author.id == currentUser.id)
         .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(l10n.get('profile') ?? 'Profile'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -66,15 +68,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           _buildStatColumn(
-                            'Posts',
+                            l10n.get('posts') ?? 'Posts',
                             userPosts.length.toString(),
                           ),
                           _buildStatColumn(
-                            'Followers',
+                            l10n.get('followers') ?? 'Followers',
                             currentUser.followersCount.toString(),
                           ),
                           _buildStatColumn(
-                            'Following',
+                            l10n.get('following') ?? 'Following',
                             currentUser.followingCount.toString(),
                           ),
                         ],
@@ -198,14 +200,17 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _buildStatColumn(String label, String count) {
+  Widget _buildStatColumn(String label, String value) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          count,
+          value,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
+        const SizedBox(height: 4),
+        Text(label, style: const TextStyle(fontSize: 14, color: Colors.grey)),
       ],
     );
   }

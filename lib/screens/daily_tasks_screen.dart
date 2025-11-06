@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class DailyTasksScreen extends StatefulWidget {
@@ -38,8 +39,9 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('Daily Tasks')),
+      appBar: AppBar(title: Text(l10n.get('dailyTasks') ?? 'Daily Tasks')),
       body: Column(
         children: [
           Expanded(
@@ -65,9 +67,9 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
                 Expanded(
                   child: TextField(
                     controller: _taskController,
-                    decoration: const InputDecoration(
-                      hintText: 'Add a new task...',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      hintText: l10n.get('addNewTask') ?? 'Add a new task...',
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),

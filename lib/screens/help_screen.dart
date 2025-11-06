@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import '../models/question.dart';
 import '../repositories/example_help.dart';
@@ -42,9 +43,10 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Help & Support'),
+        title: Text(l10n.get('helpAndSupport') ?? 'Help & Support'),
       ),
       body: Column(
         children: [
@@ -54,7 +56,7 @@ class _HelpScreenState extends State<HelpScreen> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search for help...',
+                hintText: l10n.get('searchForHelp') ?? 'Search for help...',
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -81,7 +83,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 Expanded(
                   child: _buildQuickAction(
                     icon: Icons.email_outlined,
-                    label: 'Email Us',
+                    label: l10n.get('emailUs') ?? 'Email Us',
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -95,11 +97,23 @@ class _HelpScreenState extends State<HelpScreen> {
                 Expanded(
                   child: _buildQuickAction(
                     icon: Icons.chat_outlined,
-                    label: 'Live Chat',
+                    label: l10n.get('liveChat') ?? 'Live Chat',
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Live chat coming soon')),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildQuickAction(
+                    icon: Icons.call_outlined,
+                    label: l10n.get('callUs') ?? 'Call Us',
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Live chat coming soon'),
+                          content: Text('Dialing support number...'),
                         ),
                       );
                     },
@@ -109,15 +123,17 @@ class _HelpScreenState extends State<HelpScreen> {
             ),
           ),
           const SizedBox(height: 16),
+          const Divider(height: 24),
 
-          // FAQ Section Header
+          // FAQ Section
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Text(
-              'Frequently Asked Questions',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                l10n.get('faq') ?? 'Frequently Asked Questions',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
           ),
 

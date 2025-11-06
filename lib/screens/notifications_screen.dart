@@ -1,3 +1,4 @@
+import 'package:english_forum_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import '../models/notification.dart';
 import '../repositories/example_notification.dart';
@@ -20,19 +21,24 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notifications'),
+        title: Text(l10n.get('notifications') ?? 'Notifications'),
         actions: [
           IconButton(
             icon: const Icon(Icons.done_all),
-            tooltip: 'Mark all as read',
+            tooltip: l10n.get('markAllAsRead') ?? 'Mark all as read',
             onPressed: () {},
           ),
         ],
       ),
       body: _notifications.isEmpty
-          ? const Center(child: Text('No notifications yet'))
+          ? Center(
+              child: Text(
+                l10n.get('noNotificationsYet') ?? 'No notifications yet',
+              ),
+            )
           : ListView.builder(
               itemCount: _notifications.length,
               itemBuilder: (context, index) {
