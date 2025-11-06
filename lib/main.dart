@@ -35,13 +35,8 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          // Use a Builder to ensure the context is correct
-          home: Builder(
-            builder: (context) {
-              // This context now has the correct localizations
-              return const LoginScreen();
-            },
-          ),
+          // Start the app with the Login Screen
+          home: const LoginScreen(),
         );
       },
     );

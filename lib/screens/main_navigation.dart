@@ -16,14 +16,6 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    SearchScreen(),
-    DailyTasksScreen(), // Thêm màn hình mới
-    NotificationsScreen(),
-    ProfileScreen(),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -33,29 +25,38 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
+    final List<Widget> widgetOptions = <Widget>[
+      const HomeScreen(),
+      const SearchScreen(),
+      const DailyTasksScreen(),
+      const NotificationsScreen(),
+      const ProfileScreen(),
+    ];
+
     return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: Center(child: widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
-            label: l10n.get('home') ?? 'Home',
+            label: l10n.get('nav_home') ?? 'Home',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.search),
-            label: l10n.get('search') ?? 'Search',
+            label: l10n.get('nav_search') ?? 'Search',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.task_alt), // Icon cho Daily Tasks
-            label: l10n.get('tasks') ?? 'Tasks',
+            label: l10n.get('nav_tasks') ?? 'Tasks',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.notifications),
-            label: l10n.get('notifications') ?? 'Notifications',
+            label: l10n.get('nav_notifications') ?? 'Notifications',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person),
-            label: l10n.get('profile') ?? 'Profile',
+            label: l10n.get('nav_profile') ?? 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,

@@ -118,8 +118,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: OutlinedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Edit profile coming soon'),
+                        SnackBar(
+                          content: Text(l10n.get('editProfileComingSoon') ??
+                              'Edit profile coming soon'),
                         ),
                       );
                     },
@@ -128,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text('Edit Profile'),
+                    child: Text(l10n.get('editProfile') ?? 'Edit Profile'),
                   ),
                 ),
               ],
@@ -138,10 +139,16 @@ class _ProfileScreenState extends State<ProfileScreen>
 
           TabBar(
             controller: _tabController,
-            tabs: const [
-              Tab(icon: Icon(Icons.grid_on), text: 'Posts'),
-              Tab(icon: Icon(Icons.bookmark_border), text: 'Saved'),
-              Tab(icon: Icon(Icons.person_outline), text: 'Tagged'),
+            tabs: [
+              Tab(
+                  icon: const Icon(Icons.grid_on),
+                  text: l10n.get('posts') ?? 'Posts'),
+              Tab(
+                  icon: const Icon(Icons.bookmark_border),
+                  text: l10n.get('saved') ?? 'Saved'),
+              Tab(
+                  icon: const Icon(Icons.person_outline),
+                  text: l10n.get('tagged') ?? 'Tagged'),
             ],
           ),
 
@@ -150,7 +157,9 @@ class _ProfileScreenState extends State<ProfileScreen>
               controller: _tabController,
               children: [
                 userPosts.isEmpty
-                    ? const Center(child: Text('No posts yet'))
+                    ? Center(
+                        child: Text(
+                            l10n.get('noPostsYet') ?? 'No posts yet'))
                     : ListView.builder(
                         itemCount: userPosts.length,
                         itemBuilder: (context, index) {
@@ -178,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 overflow: TextOverflow.ellipsis,
                               ),
                               subtitle: Text(
-                                '${post.likesCount} likes • ${post.commentsCount} comments',
+                                '${post.likesCount} ${l10n.get('likes') ?? 'likes'} • ${post.commentsCount} ${l10n.get('comments') ?? 'comments'}',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.grey[600],
@@ -189,9 +198,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                         },
                       ),
 
-                const Center(child: Text('Saved posts feature coming soon')),
+                Center(
+                    child: Text(l10n.get('savedPostsComingSoon') ??
+                        'Saved posts feature coming soon')),
 
-                const Center(child: Text('Tagged posts feature coming soon')),
+                Center(
+                    child: Text(l10n.get('taggedPostsComingSoon') ??
+                        'Tagged posts feature coming soon')),
               ],
             ),
           ),
