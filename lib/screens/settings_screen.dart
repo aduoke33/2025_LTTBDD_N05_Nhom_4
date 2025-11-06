@@ -44,15 +44,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                        content: Text('Change password coming soon')),
+                      content: Text('Change password coming soon'),
+                    ),
                   );
                 },
               ),
               SwitchListTile(
                 secondary: const Icon(Icons.visibility_off_outlined),
                 title: Text(l10n.get('privateAccount') ?? 'Private Account'),
-                subtitle: Text(l10n.get('privateAccountDescription') ??
-                    'Only followers can see your posts'),
+                subtitle: Text(
+                  l10n.get('privateAccountDescription') ??
+                      'Only followers can see your posts',
+                ),
                 value: _privateAccount,
                 onChanged: (value) {
                   setState(() {
@@ -63,14 +66,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const Divider(),
 
               // Notifications Section
-              _buildSectionHeader(
-                  l10n.get('notifications') ?? 'Notifications'),
+              _buildSectionHeader(l10n.get('notifications') ?? 'Notifications'),
               SwitchListTile(
                 secondary: const Icon(Icons.notifications_outlined),
                 title: Text(
-                    l10n.get('pushNotifications') ?? 'Push Notifications'),
-                subtitle: Text(l10n.get('pushNotificationsDescription') ??
-                    'Receive push notifications'),
+                  l10n.get('pushNotifications') ?? 'Push Notifications',
+                ),
+                subtitle: Text(
+                  l10n.get('pushNotificationsDescription') ??
+                      'Receive push notifications',
+                ),
                 value: _notificationsEnabled,
                 onChanged: (value) {
                   setState(() {
@@ -80,14 +85,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               _buildListTile(
                 icon: Icons.email_outlined,
-                title:
-                    l10n.get('emailNotifications') ?? 'Email Notifications',
-                subtitle: l10n.get('emailNotificationsDescription') ??
+                title: l10n.get('emailNotifications') ?? 'Email Notifications',
+                subtitle:
+                    l10n.get('emailNotificationsDescription') ??
                     'Manage email preferences',
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Email settings coming soon')),
+                    const SnackBar(content: Text('Email settings coming soon')),
                   );
                 },
               ),
@@ -99,7 +103,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 secondary: const Icon(Icons.dark_mode_outlined),
                 title: Text(l10n.get('darkMode') ?? 'Dark Mode'),
                 subtitle: Text(
-                    l10n.get('darkModeDescription') ?? 'Enable dark theme'),
+                  l10n.get('darkModeDescription') ?? 'Enable dark theme',
+                ),
                 value: _darkModeEnabled,
                 onChanged: (value) {
                   setState(() {
@@ -117,8 +122,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               _buildListTile(
                 icon: Icons.language_outlined,
                 title: l10n.get('language') ?? 'Language',
-                subtitle: l10n.get('languageDescription') ??
-                    'English / Tiếng Việt',
+                subtitle:
+                    l10n.get('languageDescription') ?? 'English / Tiếng Việt',
                 trailing: DropdownButton<String>(
                   value: languageProvider.currentLocale.languageCode,
                   onChanged: (String? newValue) {
@@ -128,8 +133,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       languageProvider.toggleLanguage();
                     }
                   },
-                  items: <String>['en', 'vi']
-                      .map<DropdownMenuItem<String>>((String value) {
+                  items: <String>['en', 'vi'].map<DropdownMenuItem<String>>((
+                    String value,
+                  ) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value == 'en' ? 'English' : 'Tiếng Việt'),
@@ -149,7 +155,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AboutScreen()),
+                      builder: (context) => const AboutScreen(),
+                    ),
                   );
                 },
               ),
@@ -160,7 +167,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AboutTeamScreen()),
+                      builder: (context) => const AboutTeamScreen(),
+                    ),
                   );
                 },
               ),
@@ -189,10 +197,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Text(
         title,
-        style: Theme.of(context)
-            .textTheme
-            .titleSmall
-            ?.copyWith(fontWeight: FontWeight.bold),
+        style: Theme.of(
+          context,
+        ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }
