@@ -9,20 +9,54 @@ class DailyTasksScreen extends StatefulWidget {
 }
 
 class _DailyTasksScreenState extends State<DailyTasksScreen> {
-  final List<String> _tasks = [
-    'Learn 10 new vocabulary words',
-    'Practice speaking for 15 minutes',
-    'Read one news article in English',
-  ];
+  final List<Map<String, dynamic>> _tasks = [];
   final TextEditingController _taskController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize default tasks
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final l10n = AppLocalizations.of(context)!;
+      if (_tasks.isEmpty) {
+        setState(() {
+          _tasks.addAll([
+            {
+              'text':
+                  l10n.get('defaultTask1') ?? 'Learn 10 new vocabulary words',
+              'completed': false,
+            },
+            {
+              'text':
+                  l10n.get('defaultTask2') ??
+                  'Practice speaking for 15 minutes',
+              'completed': false,
+            },
+            {
+              'text':
+                  l10n.get('defaultTask3') ??
+                  'Read one news article in English',
+              'completed': false,
+            },
+          ]);
+        });
+      }
+    });
+  }
 
   void _addTask() {
     if (_taskController.text.isNotEmpty) {
       setState(() {
-        _tasks.add(_taskController.text);
+        _tasks.add({'text': _taskController.text, 'completed': false});
       });
       _taskController.clear();
     }
+  }
+
+  void _toggleTask(int index) {
+    setState(() {
+      _tasks[index]['completed'] = !_tasks[index]['completed'];
+    });
   }
 
   void _deleteTask(int index) {
@@ -48,9 +82,23 @@ class _DailyTasksScreenState extends State<DailyTasksScreen> {
             child: ListView.builder(
               itemCount: _tasks.length,
               itemBuilder: (context, index) {
+                final task = _tasks[index];
                 return ListTile(
-                  title: Text(_tasks[index]),
-                  leading: const Icon(Icons.check_box_outline_blank),
+                  onTap: () => _toggleTask(index),
+                  title: Text(
+                    task['text'],
+                    style: TextStyle(
+                      decoration: task['completed']
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                      color: task['completed'] ? Colors.grey : null,
+                    ),
+                  ),
+                  leading: Checkbox(
+                    value: task['completed'],
+                    onChanged: (bool? value) => _toggleTask(index),
+                    activeColor: Colors.green,
+                  ),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete_outline, color: Colors.red),
                     onPressed: () => _deleteTask(index),
