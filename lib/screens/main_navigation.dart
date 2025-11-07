@@ -1,5 +1,5 @@
 import 'package:english_forum_app/l10n/app_localizations.dart';
-import 'package:english_forum_app/screens/daily_tasks_screen.dart';
+import 'package:english_forum_app/screens/learn_screen.dart';
 import 'package:english_forum_app/screens/home_screen.dart';
 import 'package:english_forum_app/screens/notifications_screen.dart';
 import 'package:english_forum_app/screens/profile_screen.dart';
@@ -29,7 +29,7 @@ class _MainNavigationState extends State<MainNavigation> {
     final List<Widget> widgetOptions = <Widget>[
       const HomeScreen(),
       const SearchScreen(),
-      const DailyTasksScreen(),
+      const LearnScreen(),
       const NotificationsScreen(),
       const ProfileScreen(),
     ];
@@ -47,8 +47,8 @@ class _MainNavigationState extends State<MainNavigation> {
             label: l10n.get('nav_search') ?? 'Search',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.task_alt), // Icon cho Daily Tasks
-            label: l10n.get('nav_tasks') ?? 'Tasks',
+            icon: const Icon(Icons.school),
+            label: l10n.get('learn') ?? 'Learn',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.notifications),
@@ -63,8 +63,7 @@ class _MainNavigationState extends State<MainNavigation> {
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType
-            .fixed, // Quan trọng để hiển thị tất cả label
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
