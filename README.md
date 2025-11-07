@@ -10,6 +10,7 @@
 - **Git**
 
 ### Kiểm tra phiên bản Flutter:
+
 ```bash
 flutter --version
 ```
@@ -19,33 +20,39 @@ Nếu chưa cài đặt Flutter, tải tại: https://flutter.dev/docs/get-start
 ## Hướng dẫn cài đặt
 
 ### 1. Clone dự án
+
 ```bash
 git clone https://github.com/aduoke33/2025_LTTBDD_N05_Nhom_4.git
 cd english_forum_app
 ```
 
 ### 2. Cài đặt dependencies
+
 ```bash
 flutter pub get
 ```
 
 **Lưu ý:** Nếu gặp lỗi, thử:
+
 ```bash
 flutter clean
 flutter pub get
 ```
 
 ### 3. Kiểm tra thiết bị
+
 ```bash
 flutter devices
 ```
 
 ### 4. Chạy ứng dụng
+
 ```bash
 flutter run
 ```
 
 Hoặc chọn thiết bị cụ thể:
+
 ```bash
 flutter run -d chrome        # Web
 flutter run -d windows       # Windows
@@ -55,35 +62,43 @@ flutter run -d emulator-xxxx # Android Emulator
 ## Xử lý lỗi thường gặp
 
 ### Lỗi: "Flutter SDK not found"
+
 **Nguyên nhân:** Chưa cài đặt Flutter hoặc chưa thêm vào PATH
 
 **Giải pháp:**
+
 1. Cài đặt Flutter: https://flutter.dev/docs/get-started/install
 2. Thêm Flutter vào PATH
 3. Chạy: `flutter doctor` để kiểm tra
 
 ### Lỗi: "Dart SDK version conflict"
+
 **Nguyên nhân:** Phiên bản Flutter không tương thích
 
 **Giải pháp:**
+
 ```bash
 flutter upgrade
 flutter pub get
 ```
 
 ### Lỗi: "Could not find a file named 'pubspec.yaml'"
+
 **Nguyên nhân:** Đang ở sai thư mục
 
 **Giải pháp:**
+
 ```bash
 cd english_forum_app  # Đảm bảo ở đúng thư mục dự án
 ls                    # Xem có file pubspec.yaml không
 ```
 
 ### Lỗi: "pub get failed"
+
 **Nguyên nhân:** Lỗi network hoặc cache
 
 **Giải pháp:**
+
 ```bash
 flutter clean
 flutter pub cache repair
@@ -91,15 +106,19 @@ flutter pub get
 ```
 
 ### Lỗi: "No connected devices"
+
 **Nguyên nhân:** Không có thiết bị/emulator nào
 
 **Giải pháp:**
+
 - **Android:** Mở Android Studio → AVD Manager → Tạo emulator
 - **Web:** Chạy `flutter run -d chrome`
 - **Windows:** Chạy `flutter run -d windows`
 
 ### Lỗi: "Gradle build failed" (Android)
+
 **Giải pháp:**
+
 ```bash
 cd android
 ./gradlew clean
@@ -110,7 +129,9 @@ flutter run
 ```
 
 ### Lỗi: "CocoaPods not installed" (iOS/macOS)
+
 **Giải pháp:**
+
 ```bash
 sudo gem install cocoapods
 cd ios
@@ -122,21 +143,25 @@ flutter run
 ## Chạy trên các nền tảng
 
 ### Android
+
 ```bash
 flutter run -d android
 ```
 
 ### iOS (chỉ trên macOS)
+
 ```bash
 flutter run -d ios
 ```
 
 ### Web
+
 ```bash
 flutter run -d chrome
 ```
 
 ### Windows
+
 ```bash
 flutter run -d windows
 ```
@@ -179,16 +204,19 @@ lib/
 ## Debug
 
 ### Bật debug mode:
+
 ```bash
 flutter run --debug
 ```
 
 ### Xem logs:
+
 ```bash
 flutter logs
 ```
 
 ### Kiểm tra performance:
+
 ```bash
 flutter run --profile
 ```
@@ -208,6 +236,7 @@ flutter run --profile
 ## Hỗ trợ
 
 Nếu gặp vấn đề, hãy:
+
 1. Chạy `flutter doctor` và kiểm tra cài đặt
 2. Đảm bảo đã chạy `flutter pub get`
 3. Thử `flutter clean` và build lại

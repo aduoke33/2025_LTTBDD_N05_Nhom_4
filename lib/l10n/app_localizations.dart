@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-// Lớp chứa tất cả các chuỗi văn bản của ứng dụng
 class AppLocalizations {
   final Locale locale;
 
   AppLocalizations(this.locale);
 
-  // Helper để truy cập từ context
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  // Delegate để load bản dịch
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  // Map chứa tất cả các bản dịch
   static final Map<String, Map<String, String>> _localizedValues = {
     'en': {
       // General
@@ -34,6 +30,19 @@ class AppLocalizations {
       'appDescription':
           'This is an application for English communication and learning.\n\n',
       'post': 'Post',
+
+      // Flashcard Screen
+      'flashcards': 'Flashcards',
+      'card': 'Card',
+      'example': 'Example:',
+      'tapToReveal': 'Tap to reveal',
+      'previous': 'Previous',
+      'next': 'Next',
+      'show': 'Show',
+      'hide': 'Hide',
+      'restart': 'Restart',
+      'learn': 'Learn',
+      'mastered': 'Mastered',
 
       // Main Navigation
       'home': 'Home',
@@ -166,6 +175,19 @@ class AppLocalizations {
           'Đây là ứng dụng dành cho giao tiếp và học tiếng Anh.\n\n',
       'post': 'Đăng',
 
+      // Flashcard Screen
+      'flashcards': 'Thẻ Ghi Nhớ',
+      'card': 'Thẻ',
+      'example': 'Ví dụ:',
+      'tapToReveal': 'Chạm để hiện',
+      'previous': 'Trước',
+      'next': 'Tiếp',
+      'show': 'Hiện',
+      'hide': 'Ẩn',
+      'restart': 'Bắt đầu lại',
+      'learn': 'Học',
+      'mastered': 'Đã thuộc',
+
       // Main Navigation
       'home': 'Trang chủ',
       'search': 'Tìm kiếm',
@@ -279,13 +301,11 @@ class AppLocalizations {
     },
   };
 
-  // Phương thức để lấy chuỗi dịch
   String? get(String key) {
     return _localizedValues[locale.languageCode]?[key];
   }
 }
 
-// Delegate class
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
